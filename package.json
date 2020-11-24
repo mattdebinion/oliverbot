@@ -1,0 +1,27 @@
+{
+  "name": "oliverbot",
+  "version": "1.0.0",
+  "description": "A multipurpose Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattdb00/oliverbot.git"
+  },
+  "keywords": [
+    "javascript",
+    "discord.js",
+    "discord.js-commando",
+    "bot",
+    "fun",
+    "moderation"
+  ],
+  "author": "Matt De Binion (MattD#0001)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattdb00/oliverbot/issues"
+  },
+  "homepage": "https://github.com/mattdb00/oliverbot#readme"
+}
