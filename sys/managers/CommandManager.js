@@ -9,6 +9,7 @@
  * See the README to learn how to create valid command files that will be detected by CommandManager.
  * ======================================================================================================================== */
 const { CommandoClient } = require('discord.js-commando');
+
 const path = require('path');
 const fs = require('fs');
 
@@ -41,18 +42,19 @@ module.exports = {
                 let rawdata = fs.readFileSync(path.join(directory, `${file.name}/${file.name}.json`));
                 let descriptor = JSON.parse(rawdata);
 
-                console.log(`${file.name} has a custom defined description name: ${descriptor.description}`);
+                console.log(`[CommandManager.js] ${file.name} has a custom defined description name: ${descriptor.description}`);
                 foundGroups.push([file.name, descriptor.description]);
 
             } else {
 
-                console.log(`No description file can be found for ${file.name}. Using the default description instead.`);
+                console.log(`[CommandManager.js] No description file can be found for ${file.name}. Using the default description instead.`);
                 foundGroups.push([file.name, file.name]);
 
             }
 
         });
 
+        // Registers everything with the client.
         Client.registry
             .registerDefaultTypes()
             .registerGroups(foundGroups)

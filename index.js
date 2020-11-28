@@ -1,4 +1,5 @@
 const { CommandoClient } = require('discord.js-commando');
+
 const path = require('path');
 
 // Bot required files and modules
@@ -17,7 +18,7 @@ CommandManager.register(client, path.join(__dirname, 'sys/commands'));
 
 client.once('ready', () => {
 
-    console.log(`Logged in as ${client.user.tag}! (${client.user.id})`);
+    console.log(`[index.js] Logged in successfully as ${client.user.tag}! (${client.user.id})`);
     client.user.setActivity(`with Matt`);
 });
 
