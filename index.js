@@ -1,16 +1,18 @@
+//NOTE TO SELF: Comment out const CONFIG variable and replace CONFIG.OLIVERBOT with process.env when deploying!
+
 const { CommandoClient } = require('discord.js-commando');
 
 const path = require('path');
 
 // Bot required files and modules
-const CONFIG = require('./sys/config.json');
+// const CONFIG = require('./sys/config.json');
 var CommandManager = require('./sys/managers/CommandManager');
 
 // constant client variable
 const client = new CommandoClient({
-    commandPrefix: CONFIG.OLIVERBOT.prefix,
-    owner: CONFIG.OLIVERBOT.ownerID,
-    invite: CONFIG.OLIVERBOT.invite,
+    commandPrefix: process.env.prefix,
+    owner: process.env.ownerID,
+    invite: process.env.invite,
 });
 
 CommandManager.test();
@@ -23,4 +25,4 @@ client.once('ready', () => {
 });
 
 // Login token
-client.login(CONFIG.OLIVERBOT.token);
+client.login(process.env.token);
