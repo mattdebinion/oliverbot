@@ -16,7 +16,7 @@ let globalCommandCollection = new Collection();
  *  - Deploying slash commands to all servers.
  *  - Running commands asychronously.
  * 
- * @version 0.0.1
+ * @version 0.2.0
  * ---
  * This file requires the following modules in addition to being connected to the Discord API with a valid token:
  * 
@@ -52,6 +52,34 @@ module.exports = {
     },
 
     /**
+     * @function clearSlashCommands
+     * @description Clears all slash commands within the development server OR globally. This is intended to remove erratic behavior of pushing slash commands over and over again.
+     * ---
+     * @param {globalConfigs.json} globalConfigs The `globalConfigs.json` file.
+     * @param {boolean} globally 
+     */
+    clearSlashCommands: (globalConfigs, globally = false) => {
+
+        const rest = new REST({ version: '9'}).setToken(globalConfigs.tokens['discord-api']);
+
+        (async () => {
+
+            try {
+                console.log('[CommandManager.js] Clearing slash commands...');
+
+                await rest.put(
+                    Routes.applicationGuildCommands(globalConfigs.ID['clientId'], globalConfigs.ID['guildId']),
+                    { body: {} },
+                );
+
+                console.log('[CommandManager.js] Successfully cleared slash commands.');
+            } catch (error) {
+                console.log('[CommandManager.js] ' + error);
+            }
+        })();
+    },
+
+    /**
      * @function pushSlashCommands
      * @description Given a `CommandList.json` file, synchronizes all slash commands with those in the file.
      * ---
@@ -64,20 +92,19 @@ module.exports = {
         let rawData = fs.readFileSync(path.resolve(path.join(JSONlistDir, 'CommandList.json')));
         let fileDataToPush = JSON.parse(rawData);
 
-        
         const rest = new REST({ version: '9'}).setToken(globalConfigs.tokens['discord-api']);
 
         (async () => {
 
             try {
-                console.log('[CommandManager.js] Starting slash commands refresh...');
+                console.log('[CommandManager.js] Pushing slash commands to client...');
 
                 await rest.put(
                     Routes.applicationGuildCommands(globalConfigs.ID['clientId'], globalConfigs.ID['guildId']),
                     { body: fileDataToPush },
                 );
 
-                console.log('[CommandManager.js] Successfully refreshed slash commands!');
+                console.log('[CommandManager.js] Successfully pushed slash commands!');
             } catch (error) {
                 console.log('[CommandManager.js] ' + error);
             }
