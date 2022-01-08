@@ -1,1 +1,0 @@
-[{"name":"textgen","description":"A version one classic, this is a text generative program that is based on the GPT-2 model by OpenAI.","options":[{"type":3,"name":"phrase","description":"Enter a phrase or a sentence.","required":true}]},{"name":"ping","description":"Replies with \"pong!\"","options":[]}]
