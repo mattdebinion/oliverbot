@@ -7,7 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('textgen')
         .setDescription('A version one classic, this is a text generative program that is based on the GPT-2 model by OpenAI.')
-        .addStringOption(option => option.setName('phrase').setDescription('Enter a phrase or a sentence.')
+        .addStringOption(option => option.setName('phrase').setDescription('Enter a prompt.')
             .setRequired(true)),
 
     async run(interaction) {

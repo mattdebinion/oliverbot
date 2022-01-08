@@ -1,6 +1,6 @@
 {
   "name": "unnamed-project",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A useful Discord bot",
   "main": "main.js",
   "dependencies": {
@@ -8,7 +8,8 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "deepai": "^1.0.17",
     "discord-api-types": "^0.25.2",
-    "discord.js": "^13.3.1"
+    "discord.js": "^13.3.1",
+    "sqlite3": "^5.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
