@@ -9,7 +9,7 @@ let globalCommandCollection = new Collection();
 
 /**
  * @module CommandManager
- * @author Matt De Binion <mattdotcpp#0001>
+ * @author Matt De Binion <MattD#0001>
  * @description CommandManager is a management file that interacts with the bot to provide command functionaity such as:
  * 
  *  - Adding, removing, and updating commands
@@ -60,7 +60,7 @@ module.exports = {
      */
     clearSlashCommands: (globalConfigs, globally = false) => {
 
-        const rest = new REST({ version: '9'}).setToken(globalConfigs.tokens['discord-api']);
+        const rest = new REST({ version: '9'}).setToken(process.env.TOKEN);
 
         (async () => {
 
@@ -68,7 +68,7 @@ module.exports = {
                 console.log('[CommandManager.js] Clearing slash commands...');
 
                 await rest.put(
-                    Routes.applicationGuildCommands(globalConfigs.ID['clientId'], globalConfigs.ID['guildId']),
+                    Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
                     { body: {} },
                 );
 
@@ -92,7 +92,7 @@ module.exports = {
         let rawData = fs.readFileSync(path.resolve(path.join(JSONlistDir, 'CommandList.json')));
         let fileDataToPush = JSON.parse(rawData);
 
-        const rest = new REST({ version: '9'}).setToken(globalConfigs.tokens['discord-api']);
+        const rest = new REST({ version: '9'}).setToken(process.env.TOKEN);
 
         (async () => {
 
@@ -100,7 +100,7 @@ module.exports = {
                 console.log('[CommandManager.js] Pushing slash commands to client...');
 
                 await rest.put(
-                    Routes.applicationGuildCommands(globalConfigs.ID['clientId'], globalConfigs.ID['guildId']),
+                    Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
                     { body: fileDataToPush },
                 );
 
