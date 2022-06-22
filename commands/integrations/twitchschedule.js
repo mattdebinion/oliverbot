@@ -26,6 +26,9 @@ module.exports = {
 
     async run(interaction) {
 
+        /**
+         * HANLDE ADDING A SCHEDULE
+         */
         if(interaction.options._subcommand === 'add') {
 
             // Call the Twitch API to get an access token.
@@ -108,7 +111,8 @@ module.exports = {
                                 .setTimestamp();
 
                             interaction.editReply({embeds: [workingEmbed], components: [], ephemeral: true});
-
+                            awaitResponse.stop();
+                            
                             // Call the Twitch API to get the streamer's schedule.
                             axios({
                                 method: 'get',
@@ -191,9 +195,11 @@ module.exports = {
                     interaction.reply({embeds: [invalidUserEmbed], ephemeral: true});
                 });
             });
-        }
 
-        if(interaction.options._subcommand === 'remove') {
+        /**
+         * HANDLE REMOVING A SCHEDULE
+         */
+        } else if(interaction.options._subcommand === 'remove') {
             
             let broadcaster = interaction.options._hoistedOptions[0].value;
 
@@ -235,6 +241,7 @@ module.exports = {
                         .setTimestamp();
 
                     interaction.editReply({embeds: [workingEmbed], components: [], ephemeral: true});
+                    awaitResponse.stop();
 
                     // Get the guild's scheduled events and delete ones matching user input in URL form.
                     let eventParameters = {

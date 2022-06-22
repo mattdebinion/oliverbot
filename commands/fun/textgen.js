@@ -15,7 +15,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        deepai.setApiKey(G_CONFIGS.tokens['deepai-api']);
+        deepai.setApiKey(process.env.DEEPAI_TOKEN);
 
         (async function() {
 
