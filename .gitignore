@@ -1,7 +1,4 @@
 /node_modules
 /data
-.vscode/settings.json
-commands/utility/birthday.js
-sqltools_20220108120147_22028.log
-data/CommandList.json
-DatabaseManager.js
+.vscode/
+.env
