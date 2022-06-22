@@ -10,19 +10,19 @@
 /**
  * BOT SPECIFIC IMPORTS
  */
-const CommandManager = require('./CommandManager.js');
+ const CommandManager = require('./CommandManager.js');
+ require('dotenv').config();
 
  /**
   * DISCORD.JS IMPORTS
   */
 const { Client, Collection, Intents } = require('discord.js');
-const G_CONFIGS = require('./data/globalConfigs.json');
 
 
 // Create the client and perform start up procedures.
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
 CommandManager.initalizeCommands('./commands', true, './data');
-CommandManager.pushSlashCommands('./data', G_CONFIGS, false);
+CommandManager.pushSlashCommands('./data', null, false);
 
 // Event listener, once the client is ready, perform the code within this function block.
 client.once('ready', () => {
@@ -38,4 +38,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Log into Discord with token.
-client.login(G_CONFIGS.tokens['discord-api']);
+client.login(process.env.TOKEN);
