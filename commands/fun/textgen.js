@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Interaction, MessageEmbed } = require('discord.js');
 const deepai = require('deepai');
-const G_CONFIGS = require('../../data/globalConfigs.json');
 
 module.exports = {
     data: new SlashCommandBuilder()

@@ -68,7 +68,7 @@ module.exports = {
                 console.log('[CommandManager.js] Clearing slash commands...');
 
                 await rest.put(
-                    Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
+                    Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_PRIMARY_GUILD_ID),
                     { body: {} },
                 );
 
@@ -92,7 +92,7 @@ module.exports = {
         let rawData = fs.readFileSync(path.resolve(path.join(JSONlistDir, 'CommandList.json')));
         let fileDataToPush = JSON.parse(rawData);
 
-        const rest = new REST({ version: '9'}).setToken(process.env.TOKEN);
+        const rest = new REST({ version: '9'}).setToken(process.env.DISCORD_CLIENT_TOKEN);
 
         (async () => {
 
@@ -100,7 +100,7 @@ module.exports = {
                 console.log('[CommandManager.js] Pushing slash commands to client...');
 
                 await rest.put(
-                    Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
+                    Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_PRIMARY_GUILD_ID),
                     { body: fileDataToPush },
                 );
 
