@@ -9,7 +9,7 @@
     "deepai": "^1.0.17",
     "discord-api-types": "^0.25.2",
     "discord.js": "^13.3.1",
-    "sqlite3": "^5.0.3"
+    "sqlite3": "^5.1.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
